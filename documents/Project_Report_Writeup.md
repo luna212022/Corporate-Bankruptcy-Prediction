@@ -2,8 +2,9 @@
 
 **Course:** UE24CS352A - Machine Learning  
 **Project Title:** Corporate Bankruptcy Prediction  
-**Team Members:** Team of Two (Teammate 1 & Teammate 2)  
-**Repository:** [Corporate-Bankruptcy-Prediction (branch: `ritu`)](https://github.com/luna212022/Corporate-Bankruptcy-Prediction)  
+**Team Members:**  
+- Ritu Ravish - PES1UG24CS928
+- Vennela Shakthi V P - PES1UG24CS525
 
 ---
 
@@ -34,12 +35,12 @@ The dataset includes 5 separate files corresponding to different prediction hori
 ## 3. Approach Taken to Solve the Problem
 Our team divided the project into two collaborative phases:
 
-### Phase 1: Data Preparation & Leakage Prevention (Teammate 1)
+### Phase 1: Data Preparation & Leakage Prevention (Ritu Ravish)
 1. **Data Ingestion:** Extracted raw records from ARFF format and converted target labels from raw byte strings into binary integers (`0` and `1`).
 2. **Stratified Train-Test Split:** Split the dataset into an **80% training set (8,402 firms)** and a **20% testing set (2,101 firms)** using `stratify=y` with a fixed `random_state=42`. Stratification ensures the exact ~4.7% bankruptcy proportion is preserved in both sets.
 3. **Median Imputation Without Data Leakage:** Because financial ratios contain extreme positive and negative values (due to division by small equity or cash amounts), the median is much more reliable than the mean. The imputer was fitted **only** on the training set (`fit_transform`) and then applied to the test set (`transform`), preventing any test information from influencing data cleaning.
 
-### Phase 2: Model Training, Imbalance Handling & Evaluation (Teammate 2)
+### Phase 2: Model Training, Imbalance Handling & Evaluation (Vennela Shakthi V P)
 1. **Handling Class Imbalance:** Instead of artificially creating synthetic data, we used **cost-sensitive learning (`class_weight='balanced'`)**. This assigns higher penalty weights to misclassifying the minority bankrupt class inversely proportional to their class frequency.
 2. **Leakage-Free Feature Scaling:** For linear and distance-based classifiers (Logistic Regression and SVM), we used `StandardScaler` inside `sklearn.pipeline.Pipeline` objects, ensuring test data is never used to calculate scaling means or variances.
 3. **Multi-Model Benchmarking:** We evaluated 5 diverse classical machine learning model families:
@@ -109,7 +110,7 @@ The models were evaluated on the held-out test set consisting of **2,101 compani
 
 ### 1. Uncovering the "Accuracy Trap"
 A central finding of this project is that **overall accuracy is completely deceptive when working with imbalanced data**:
-- Standard **Support Vector Machine (SVC)** achieved **95.29% accuracy**, but it predicted that **zero** companies would go bankrupt ($TP=0, FN=99$). In literature (such as the reference Stanford CS229 project), this model was mistakenly declared the "best" based on accuracy alone. In reality, it has a **0% Recall** and fails at the primary business goal.
+- Standard **Support Vector Machine (SVC)** achieved **95.29% accuracy**, but it predicted that **zero** companies would go bankrupt ($TP=0, FN=99$). In some past literature, this model was mistakenly declared the "best" based on accuracy alone, a gap we identified and addressed. In reality, it has a **0% Recall** and fails at the primary business goal.
 - Standard **Random Forest (Default)** similarly achieved **95.48% accuracy**, but missed 95 out of 99 bankrupt companies ($Recall = 4.04\%$).
 
 ### 2. The Practical Benefit of Class Weight Balancing

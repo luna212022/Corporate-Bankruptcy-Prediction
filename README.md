@@ -1,9 +1,9 @@
 # Corporate Bankruptcy Prediction
 
 **UE24CS352A - Machine Learning Mini-Project**  
-**Team Composition:** Team of Two  
-**Git Branch:** `ritu`  
-**Repository:** [luna212022/Corporate-Bankruptcy-Prediction](https://github.com/luna212022/Corporate-Bankruptcy-Prediction)
+**Team Members:**  
+- Ritu Ravish - PES1UG24CS928
+- Vennela Shakthi V P - PES1UG24CS525
 
 ---
 
@@ -43,8 +43,8 @@ The project was divided cleanly between two team members:
 
 | Team Member | Project Phase | Core Responsibilities & Deliverables |
 | :--- | :--- | :--- |
-| **Teammate 1** | **Phase 1: Data Preparation & EDA** | • Ingested raw ARFF dataset (`data/3year.arff`)<br>• Performed Exploratory Data Analysis and correlation checks<br>• Conducted missing-value analysis and median imputation without data leakage<br>• Performed stratified 80/20 train-test split<br>• Created [`notebooks/bankruptcy_prediction.ipynb`](notebooks/bankruptcy_prediction.ipynb) and saved processed CSVs under `data/processed/` |
-| **Teammate 2** | **Phase 2: Modeling & Evaluation** | • Designed class-weight balancing strategy to address the ~20:1 imbalance<br>• Built leak-free scikit-learn pipelines with standard feature scaling<br>• Implemented 5 diverse ML classifiers (Logistic Regression, Decision Tree, Random Forest, SVM, Gradient Boosting)<br>• Evaluated all models on unseen test data across multiple metrics<br>• Created executed notebook [`notebooks/model_training.ipynb`](notebooks/model_training.ipynb), modular scripts in `src/`, visual results under `results/`, and the project write-up |
+| **Ritu Ravish** | **Phase 1: Data Preparation & EDA** | • Ingested raw ARFF dataset (`data/3year.arff`)<br>• Performed Exploratory Data Analysis and correlation checks<br>• Conducted missing-value analysis and median imputation without data leakage<br>• Performed stratified 80/20 train-test split<br>• Created [`notebooks/bankruptcy_prediction.ipynb`](notebooks/bankruptcy_prediction.ipynb) and saved processed CSVs under `data/processed/` |
+| **Vennela Shakthi V P** | **Phase 2: Modeling & Evaluation** | • Designed class-weight balancing strategy to address the ~20:1 imbalance<br>• Built leak-free scikit-learn pipelines with standard feature scaling<br>• Implemented 5 diverse ML classifiers (Logistic Regression, Decision Tree, Random Forest, SVM, Gradient Boosting)<br>• Evaluated all models on unseen test data across multiple metrics<br>• Created executed notebook [`notebooks/model_training.ipynb`](notebooks/model_training.ipynb), modular scripts in `src/`, visual results under `results/`, and the project write-up |
 
 ---
 
@@ -217,7 +217,7 @@ All models were evaluated on the exact same unseen test set of **2,101 companies
 
 ### 1. The "Accuracy Trap" in Imbalanced Data
 A critical observation in this project is that **accuracy alone is completely misleading**:
-- The standard **Support Vector Machine (SVC)** achieved **95.29% accuracy**, but predicted that **zero** companies would go bankrupt ($TP=0, FN=99$). In external reference literature (such as the Stanford CS229 report), this model was mistakenly called the "best" based on accuracy. In reality, it has a **0% Recall** and provides zero predictive value.
+- The standard **Support Vector Machine (SVC)** achieved **95.29% accuracy**, but predicted that **zero** companies would go bankrupt ($TP=0, FN=99$). In some past literature, this model was mistakenly called the "best" based on accuracy, a gap we identified and addressed. In reality, it has a **0% Recall** and provides zero predictive value.
 - Similarly, standard unweighted **Random Forest (Default)** achieved **95.48% accuracy**, but missed 95 out of 99 bankrupt companies ($Recall = 4.04\%$).
 
 ### 2. Why Class Weight Balancing Matters
