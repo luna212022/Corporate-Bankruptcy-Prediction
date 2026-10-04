@@ -1,0 +1,8 @@
+Model,Accuracy,Precision (Bankrupt),Recall (Bankrupt),F1-Score (Bankrupt),ROC-AUC,TN,FP,FN,TP
+Logistic Regression (Balanced),0.6592,0.0935,0.7172,0.1655,0.7419,1314,688,28,71
+Logistic Regression (Default),0.95,0.125,0.0101,0.0187,0.7126,1995,7,98,1
+Decision Tree (Balanced),0.7373,0.1219,0.7374,0.2092,0.7893,1476,526,26,73
+Random Forest (Balanced),0.94,0.3846,0.4545,0.4167,0.8719,1930,72,54,45
+Random Forest (Default),0.9548,1.0,0.0404,0.0777,0.8608,2002,0,95,4
+Support Vector Machine (SVC),0.9529,0.0,0.0,0.0,0.6353,2002,0,99,0
+Gradient Boosting,0.9653,0.8095,0.3434,0.4823,0.9113,1994,8,65,34
